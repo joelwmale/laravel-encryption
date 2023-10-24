@@ -28,6 +28,10 @@ trait EncryptsAttributes
             $model->encryptAttributes();
         });
 
+        static::saved(function ($model) {
+            $model->decryptAttributes();
+        });
+
         static::retrieved(function ($model) {
             $model->decryptAttributes();
         });
