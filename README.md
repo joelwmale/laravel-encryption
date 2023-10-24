@@ -102,23 +102,6 @@ Not all casts are supported right now, but again, open to PRs to add more casts
 composer test
 ```
 
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Security
-
-If you discover any security related issues, please email joel@joelmale.com instead of using the issue tracker.
-
-## Credits
-
-- [Joel Male](https://github.com/joelwmale)
-- [All Contributors](../../contributors)
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
