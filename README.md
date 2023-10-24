@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/joelwmale/laravel-encryption.svg?style=flat-square)](https://packagist.org/packages/joelwmale/laravel-encryption)
 [![Total Downloads](https://img.shields.io/packagist/dt/joelwmale/laravel-encryption.svg?style=flat-square)](https://packagist.org/packages/joelwmale/laravel-encryption)
+![GitHub Actions](https://github.com/joelwmale/laravel-encryption/actions/workflows/main.yml/badge.svg)
 
 A package to easily encrypt & decrypt database data in Laravel using built in Laravel functions.
 
