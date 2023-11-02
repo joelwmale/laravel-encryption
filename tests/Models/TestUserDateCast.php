@@ -17,9 +17,11 @@ class TestUserDateCast extends Model
 
     protected $encryptableAttributes = [
         'date_of_birth',
+        'email_verified_at',
     ];
 
     protected $encryptableCasts = [
         'date_of_birth' => 'date',
+        'email_verified_at' => 'datetime',
     ];
 }

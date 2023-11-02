@@ -4,14 +4,14 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/joelwmale/laravel-encryption.svg?style=flat-square)](https://packagist.org/packages/joelwmale/laravel-encryption)
 ![GitHub Actions](https://github.com/joelwmale/laravel-encryption/actions/workflows/main.yml/badge.svg)
 
-A package to easily encrypt & decrypt database data in Laravel using built in Laravel functions.
+A package to easily encrypt & decrypt model fields in Laravel using OpenSSL.
 
 ## Key Features
 
 - Encrypt and decrypt module attributes easily
 - Minimal configuration
-- Uses in-built Laravel functions for encrypting and decrypting
-- Easily select encrypted fields and their casts
+- Comes with a selection of eloquent builders for easy queries
+- Growing support for casting encryptable data
 
 ## Installation
 
@@ -31,31 +31,52 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Joelwmale\LaravelEncryption\Traits\EncryptsAttributes;
 
-class SensitiveModel extends Model
+class User extends Model
 {
     use EncryptsAttributes;
 
     protected $encryptableAttributes = [
-        'field_one',
-        'field_two',
-        'date_one',
+        'first_name',
+        'last_name',
+        'date_of_birth',
+        'email_verified_at',
     ];
 
     protected $encryptableCasts = [
-        'date_one' => 'date',
+        'date_of_birth' => 'date',
+        'email_verified_at' => 'datetime'
     ];
 }
 ```
 
 ## Configuration
 
-### Publshing configuration
+### Publshing The Configuration
 
 The configuration file looks like this:
 
 ```php
 return [
-    'laravel_encryption_enabled' => env('LARAVEL_ENCRYPTION_ENABLED', true),
+    /**
+     * Enable or disable the encryption.
+     */
+    'enabled' => env('LARAVEL_ENCRYPTION_ENABLED', true),
+
+    /**
+     * The encryption key.
+     *
+     * Default: your app key.
+     */
+    'key' => env('LARAVEL_ENCRYPTION_KEY', null),
+
+    /**
+     * The encryption cipher.
+     *
+     * Supports any cipher method supported by openssl_get_cipher_methods().
+     *
+     * Default: AES-256-CBC.
+     */
+    'cipher' => env('LARAVEL_ENCRYPTION_CIPHER', 'AES-256-CBC'),
 ];
 ```
 
@@ -65,36 +86,39 @@ If you need to make any changes to the configuration, feel free to publish the c
 php artisan vendor:publish --provider="Joelwmale\LaravelEncryption\LaravelEncryptionServiceProvider"
 ```
 
-### Configure Attributes to be Encryped/Decrypted
+### Configure Model Attributes To Be Encrypted
 
-Add all your database columns that require this functionality into this array.
+This package will only encrypt fields within the `$encryptableAttributes` array, leaving the rest of the model unencrypted and untouched.
 
 ```php
 protected $encryptableAttributes = [
-    'field_one',
-    'field_two',
-    'date_one',
+    'first_name',
+    'last_name',
 ];
 ```
 
+This is useful for scenarios where compliance only requires you encrypting specific values and not your entire database.
 
-### Casting Encrypred/Decrypted values
+### Casting Encrypted Values
 
-Due to the fact that encryped values can be quite long, you will need to store them as `text` fields, meaning you have to give way to native column types.
+Due to the fact that encrypted values can be quite long, you will need to store them as `text` fields, meaning you have to give way to native column types.
 
-Also due to the way Laravel handles casting (and the priority it takes) you cannot right now use native casts with encrypted fields (open to a PR if someone can solve this)
+Also due to the way Laravel handles casting (and the priority it takes) you cannot right now use native casts with encrypted fields.
+
+So we use our own array to determine what fields should be casted to what:
 
 ```php
 protected $encryptableCasts = [
-    'date_one' => 'date',
+    'date_of_birth' => 'date',
 ];
 ```
 
 #### Supported casts
 
-Not all casts are supported right now, but again, open to PRs to add more casts
+Cast support is still growing, and will be added as time goes on. 
 
 - date
+- datetime
 
 ### Testing
 

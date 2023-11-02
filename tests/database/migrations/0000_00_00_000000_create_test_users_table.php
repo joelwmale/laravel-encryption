@@ -20,6 +20,7 @@ return new class() extends Migration
             $table->string('password');
 
             $table->text('date_of_birth');
+            $table->text('email_verified_at')->nullable();
 
             $table->timestamps();
         });

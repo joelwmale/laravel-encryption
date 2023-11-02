@@ -2,7 +2,8 @@
 
 namespace Joelwmale\LaravelEncryption\Traits;
 
-use Illuminate\Support\Facades\Crypt;
+use Joelwmale\LaravelEncryption\Builders\EloquentBuilder;
+use Joelwmale\LaravelEncryption\Services\EncryptService;
 use Joelwmale\LaravelEncryption\Support\HandleCastableAttributes;
 use Joelwmale\LaravelEncryption\Support\ParseAttributes;
 
@@ -15,6 +16,11 @@ trait EncryptsAttributes
         parent::__construct();
 
         $this->encryptionEnabled = config('laravel_encryption.enabled', true);
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new EloquentBuilder($query);
     }
 
     public function getEncryptableAttributes()
@@ -45,7 +51,7 @@ trait EncryptsAttributes
 
         foreach ($this->getEncryptableAttributes() as $attribute) {
             if (! empty($this->$attribute)) {
-                $this->$attribute = Crypt::encryptString(
+                $this->$attribute = EncryptService::encrypt(
                     ParseAttributes::parse(
                         $this->encryptableCasts ?? [],
                         $attribute,
@@ -64,7 +70,7 @@ trait EncryptsAttributes
 
         foreach ($this->getEncryptableAttributes() as $attribute) {
             if (! empty($this->$attribute) && $this->attributeIsEncrypted($attribute)) {
-                $value = Crypt::decryptString($this->$attribute);
+                $value = EncryptService::decrypt($this->$attribute);
 
                 if (! empty($this->encryptableCasts)) {
                     $this->$attribute = HandleCastableAttributes::handle($this->encryptableCasts, $attribute, $value);
@@ -78,7 +84,7 @@ trait EncryptsAttributes
     public function attributeIsEncrypted($attribute)
     {
         try {
-            Crypt::decryptString($this->$attribute);
+            EncryptService::decrypt($this->$attribute);
         } catch (\Exception $e) {
             return false;
         }

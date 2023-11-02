@@ -1,6 +1,6 @@
 {
     "name": "joelwmale/laravel-encryption",
-    "description": "A package to easily encrypt and decrypt database data in Laravel",
+    "description": "A package to easily encrypt & decrypt model fields in Laravel using OpenSSL.",
     "keywords": [
         "joelwmale",
         "laravel-encryption"

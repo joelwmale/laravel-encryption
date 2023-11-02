@@ -17,5 +17,6 @@ class TestUser extends Model
 
     protected $encryptableAttributes = [
         'date_of_birth',
+        'email_verified_at',
     ];
 }
