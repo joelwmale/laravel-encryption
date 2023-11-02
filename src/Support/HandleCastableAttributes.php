@@ -10,6 +10,10 @@ class HandleCastableAttributes
     {
         $castType = $encryptableCasts[$attribute] ?? null;
 
+        if (! $castType) {
+            return $value;
+        }
+
         if ($castType === 'date' || $castType === 'datetime') {
             return Date::handle($value);
         }
