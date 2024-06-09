@@ -3,6 +3,7 @@
 namespace Joelwmale\LaravelEncryption\Support;
 
 use Joelwmale\LaravelEncryption\Casts\Date;
+use Joelwmale\LaravelEncryption\Casts\Json;
 
 class HandleCastableAttributes
 {
@@ -16,6 +17,10 @@ class HandleCastableAttributes
 
         if ($castType === 'date' || $castType === 'datetime') {
             return Date::handle($value);
+        }
+
+        if ($castType === 'json') {
+            return Json::handle($value);
         }
 
         throw new \Exception('The cast type "'.$castType.'" is not supported.');

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Joelwmale\LaravelEncryption\Services\EncryptService;
 use Tests\Models\TestUser;
+use Illuminate\Support\Facades\DB;
 use Tests\Models\TestUserDateCast;
+use Joelwmale\LaravelEncryption\Services\EncryptService;
 
 it('encrypts data', function () {
     $user = TestUser::create([

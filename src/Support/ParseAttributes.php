@@ -24,6 +24,10 @@ class ParseAttributes
             return $value->format('Y-m-d H:i:s');
         }
 
+        if ($castType === 'json') {
+            return json_encode($value);
+        }
+
         return $value;
     }
 }
