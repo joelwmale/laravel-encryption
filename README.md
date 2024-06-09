@@ -119,6 +119,7 @@ Cast support is still growing, and will be added as time goes on.
 
 - date
 - datetime
+- json
 
 ### Testing
 
