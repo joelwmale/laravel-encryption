@@ -1,66 +1,66 @@
 {
-    "name": "joelwmale/laravel-encryption",
-    "description": "A package to easily encrypt & decrypt model fields in Laravel using OpenSSL.",
-    "keywords": [
-        "joelwmale",
-        "laravel-encryption"
-    ],
-    "homepage": "https://github.com/joelwmale/laravel-encryption",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Joel Male",
-            "email": "joel@joelmale.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^8.1",
-        "illuminate/support": "^8.0|^9.0|^10.0",
-        "nesbot/carbon": "^2.71",
-        "ext-json": "*"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.8",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.13",
-        "pestphp/pest": "^2.24",
-        "pestphp/pest-plugin-arch": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.2"
-    },
-    "autoload": {
-        "psr-4": {
-            "Joelwmale\\LaravelEncryption\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Joelwmale\\LaravelEncryption\\LaravelEncryptionServiceProvider"
-            ],
-            "aliases": {
-                "LaravelEncryption": "Joelwmale\\LaravelEncryption\\LaravelEncryptionFacade"
-            }
-        }
+  "name": "joelwmale/laravel-encryption",
+  "description": "A package to easily encrypt & decrypt model fields in Laravel using OpenSSL.",
+  "keywords": [
+    "joelwmale",
+    "laravel-encryption"
+  ],
+  "homepage": "https://github.com/joelwmale/laravel-encryption",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Joel Male",
+      "email": "joel@joelmale.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+    "nesbot/carbon": "^2.71",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.0",
+    "nunomaduro/collision": "^7.8",
+    "nunomaduro/larastan": "^2.0.1",
+    "orchestra/testbench": "^8.13",
+    "pestphp/pest": "^2.24",
+    "pestphp/pest-plugin-arch": "^2.0",
+    "pestphp/pest-plugin-laravel": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Joelwmale\\LaravelEncryption\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "analyse": "vendor/bin/phpstan analyse",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest --coverage",
+    "format": "vendor/bin/pint"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Joelwmale\\LaravelEncryption\\LaravelEncryptionServiceProvider"
+      ],
+      "aliases": {
+        "LaravelEncryption": "Joelwmale\\LaravelEncryption\\LaravelEncryptionFacade"
+      }
+    }
+  }
 }
