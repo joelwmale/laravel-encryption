@@ -19,4 +19,11 @@ trait WhereEncrypted
 
         return self::orWhere($column, $operator, $encryptedValue);
     }
+
+    public function whereLikeEncrypted($column, $value = null)
+    {
+        $encryptedValue = EncryptService::encrypt($value);
+
+        return self::whereLike($column, $encryptedValue);
+    }
 }
